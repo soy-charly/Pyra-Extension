@@ -3,11 +3,11 @@
   "displayName": "Zenvik Language",
   "description": "Syntax highlighting and compiler commands for the Zenvik language.",
   "version": "0.1.0",
-  "publisher": "pyra-language",
+  "publisher": "zenvik-language",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/soy-charly/Pyra-Extension.git"
+    "url": "https://github.com/soy-charly/Zenvik-Extension.git"
   },
   "icon": "icon.png",
   "files": [
