@@ -9,9 +9,13 @@ const manifest = JSON.parse(fs.readFileSync(path.join(root, "package.json"), "ut
 const snippets = JSON.parse(fs.readFileSync(path.join(root, "snippets/pyra.json"), "utf8"));
 
 test("manifest registers the Pyra language, grammar, and commands", () => {
-  assert.ok(manifest.contributes.languages.some(
-    (language) => language.id === "pyra" && language.extensions.includes(".pyra")
-  ));
+  const pyraLanguage = manifest.contributes.languages.find((language) => language.id === "pyra");
+  assert.ok(pyraLanguage && pyraLanguage.extensions.includes(".pyra"));
+  assert.deepEqual(pyraLanguage.icon, {
+    light: "./icons/pyra.svg",
+    dark: "./icons/pyra.svg"
+  });
+  assert.ok(fs.existsSync(path.join(root, "icons/pyra.svg")));
   assert.ok(!manifest.contributes.iconThemes, "the extension should not replace the user's icon theme");
   assert.ok(manifest.contributes.grammars.some(
     (grammar) => grammar.language === "pyra" && grammar.path === "./syntaxes/pyra.tmLanguage.json"
@@ -43,19 +47,12 @@ test("snippets cover functions, branches, loops, and common built-ins", () => {
   }
 });
 
-test("extension activation adds Pyra file badges without replacing the icon theme", () => {
+test("extension activation registers commands and language providers", () => {
   const registered = [];
   const providers = [];
-  let fileDecorationProvider;
   const disposable = { dispose() {} };
   const diagnostics = { ...disposable, set() {} };
   const output = { ...disposable, appendLine() {}, show() {} };
-  class FileDecoration {
-    constructor(badge, tooltip) {
-      this.badge = badge;
-      this.tooltip = tooltip;
-    }
-  }
   const vscode = {
     languages: {
       createDiagnosticCollection: () => diagnostics,
@@ -74,10 +71,6 @@ test("extension activation adds Pyra file badges without replacing the icon them
     },
     window: {
       createOutputChannel: () => output,
-      registerFileDecorationProvider(provider) {
-        fileDecorationProvider = provider;
-        return disposable;
-      },
       showErrorMessage() {}
     },
     commands: {
@@ -85,8 +78,7 @@ test("extension activation adds Pyra file badges without replacing the icon them
         registered.push([command, handler]);
         return disposable;
       }
-    },
-    FileDecoration
+    }
   };
   const originalLoad = Module._load;
   Module._load = function (request, parent, isMain) {
@@ -105,14 +97,6 @@ test("extension activation adds Pyra file badges without replacing the icon them
     "pyra.runExecutable",
     "pyra.checkFile"
   ]);
-  const pyraDecoration = fileDecorationProvider.provideFileDecoration({
-    fsPath: "/workspace/examples/conditions.pyra"
-  });
-  assert.equal(pyraDecoration.badge, "Pyra");
-  assert.equal(pyraDecoration.tooltip, "Pyra source file");
-  assert.equal(fileDecorationProvider.provideFileDecoration({
-    fsPath: "/workspace/README.md"
-  }), undefined);
   assert.deepEqual(providers.map(([kind, language]) => [kind, language]), [
     ["completion", "pyra"],
     ["hover", "pyra"],

@@ -16,7 +16,6 @@
     "language-configuration.json",
     "icon.png",
     "icons/**",
-    "LICENSE",
     "README.md",
     "snippets/**",
     "syntaxes/**"
@@ -45,6 +44,10 @@
         "extensions": [
           ".pyra"
         ],
+        "icon": {
+          "light": "./icons/pyra.svg",
+          "dark": "./icons/pyra.svg"
+        },
         "configuration": "./language-configuration.json"
       }
     ],
