@@ -16,9 +16,9 @@ test("manifest registers the Zenvik language, grammar, and commands", () => {
     dark: "./icons/Zenvik-Logo.svg"
   });
   assert.equal(manifest.name, "zenvik-language");
-  assert.equal(manifest.icon, "Zenvik-Logo.png");
+  assert.equal(manifest.icon, "icon.png");
   assert.ok(fs.existsSync(path.join(root, "icons/Zenvik-Logo.svg")));
-  assert.ok(fs.existsSync(path.join(root, "Zenvik-Logo.png")));
+  assert.ok(fs.existsSync(path.join(root, "icon.png")));
   assert.ok(!manifest.contributes.iconThemes, "the extension should not replace the user's icon theme");
   assert.ok(manifest.contributes.grammars.some(
     (grammar) => grammar.language === "zenvik" && grammar.path === "./syntaxes/zenvik.tmLanguage.json"

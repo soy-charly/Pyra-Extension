@@ -1,7 +1,7 @@
 # Zenvik Language for VS Code
 
 <p align="center">
-  <img src="./icons/Zenvik-Logo.svg" alt="Zenvik logo" width="180">
+  <img src="./icon.png" alt="Zenvik logo" width="180">
 </p>
 
 The extension recognizes `.zenvik` files, provides TextMate syntax highlighting, snippets for functions/branches/loops/collections, built-in and local-function completion, hover documentation, function signature help, `#` line comments, automatic delimiter pairs, brace indentation, and three commands:
