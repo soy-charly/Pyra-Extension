@@ -16,6 +16,7 @@
     "language-configuration.json",
     "icon.png",
     "icons/**",
+    "LICENCE",
     "README.md",
     "snippets/**",
     "syntaxes/**"
