@@ -3,20 +3,20 @@ const path = require("node:path");
 const vscode = require("vscode");
 const { registerLanguageFeatures } = require("./language-features");
 
-const diagnostics = vscode.languages.createDiagnosticCollection("pyra");
+const diagnostics = vscode.languages.createDiagnosticCollection("zenvik");
 let output;
 
 function activeSource() {
   const editor = vscode.window.activeTextEditor;
-  if (!editor || editor.document.languageId !== "pyra") {
-    void vscode.window.showErrorMessage("Open a .pyra file first.");
+  if (!editor || editor.document.languageId !== "zenvik") {
+    void vscode.window.showErrorMessage("Open a .zenvik file first.");
     return undefined;
   }
   return editor.document.uri.fsPath;
 }
 
 function compilerPath() {
-  return vscode.workspace.getConfiguration("pyraLanguage").get("compilerPath", "pyra");
+  return vscode.workspace.getConfiguration("zenvikLanguage").get("compilerPath", "zenvik");
 }
 
 function updateDiagnostics(file, text) {
@@ -56,11 +56,11 @@ async function checkFile() {
   if (!file) return;
   const { error, text } = await invokeCompiler(file, ["-fsyntax-only", file]);
   if (error) {
-    await vscode.window.showErrorMessage("Pyra check failed. See Problems or the Pyra output channel.");
+    await vscode.window.showErrorMessage("Zenvik check failed. See Problems or the Zenvik output channel.");
     output.appendLine(text);
     output.show(true);
   } else {
-    await vscode.window.showInformationMessage("Pyra check succeeded.");
+    await vscode.window.showInformationMessage("Zenvik check succeeded.");
   }
 }
 
@@ -73,7 +73,7 @@ async function compileFile() {
   if (error) {
     output.appendLine(text);
     output.show(true);
-    await vscode.window.showErrorMessage("Pyra compilation failed. See Problems or the Pyra output channel.");
+    await vscode.window.showErrorMessage("Zenvik compilation failed. See Problems or the Zenvik output channel.");
   } else {
     await vscode.window.showInformationMessage(`Compiled ${path.basename(executable)}.`);
   }
@@ -89,7 +89,7 @@ async function runExecutable() {
   if (!selected || selected.length === 0) return;
   const executable = selected[0].fsPath;
   const terminal = vscode.window.createTerminal({
-    name: `Pyra: ${path.basename(executable)}`,
+    name: `Zenvik: ${path.basename(executable)}`,
     shellPath: executable,
     cwd: path.dirname(executable)
   });
@@ -97,14 +97,14 @@ async function runExecutable() {
 }
 
 function activate(context) {
-  output = vscode.window.createOutputChannel("Pyra");
+  output = vscode.window.createOutputChannel("Zenvik");
   registerLanguageFeatures(vscode, context);
   context.subscriptions.push(
     diagnostics,
     output,
-    vscode.commands.registerCommand("pyra.compileFile", compileFile),
-    vscode.commands.registerCommand("pyra.runExecutable", runExecutable),
-    vscode.commands.registerCommand("pyra.checkFile", checkFile)
+    vscode.commands.registerCommand("zenvik.compileFile", compileFile),
+    vscode.commands.registerCommand("zenvik.runExecutable", runExecutable),
+    vscode.commands.registerCommand("zenvik.checkFile", checkFile)
   );
 }
 

@@ -1,27 +1,27 @@
 {
-  "scopeName": "source.pyra",
+  "scopeName": "source.zenvik",
   "patterns": [
     {
-      "name": "comment.line.number-sign.pyra",
+      "name": "comment.line.number-sign.zenvik",
       "match": "#.*$"
     },
     {
-      "name": "meta.function.definition.pyra",
+      "name": "meta.function.definition.zenvik",
       "begin": "\\b(def)\\s+([A-Za-z_][A-Za-z0-9_]*)\\s*(\\()",
       "beginCaptures": {
         "1": {
-          "name": "keyword.control.pyra"
+          "name": "keyword.control.zenvik"
         },
         "2": {
-          "name": "entity.name.function.pyra"
+          "name": "entity.name.function.zenvik"
         },
         "3": {
-          "name": "punctuation.section.arguments.begin.pyra"
+          "name": "punctuation.section.arguments.begin.zenvik"
         }
       },
       "endCaptures": {
         "0": {
-          "name": "punctuation.section.arguments.end.pyra"
+          "name": "punctuation.section.arguments.end.zenvik"
         }
       },
       "end": "\\)",
@@ -42,11 +42,11 @@
     "parameters": {
       "patterns": [
         {
-          "name": "variable.parameter.pyra",
+          "name": "variable.parameter.zenvik",
           "match": "\\b[A-Za-z_][A-Za-z0-9_]*\\b"
         },
         {
-          "name": "punctuation.separator.sequence.pyra",
+          "name": "punctuation.separator.sequence.zenvik",
           "match": ","
         }
       ]
@@ -54,77 +54,77 @@
     "expressions": {
       "patterns": [
         {
-          "name": "string.quoted.double.pyra",
+          "name": "string.quoted.double.zenvik",
           "begin": "\"",
           "end": "\"",
           "beginCaptures": {
             "0": {
-              "name": "punctuation.definition.string.begin.pyra"
+              "name": "punctuation.definition.string.begin.zenvik"
             }
           },
           "endCaptures": {
             "0": {
-              "name": "punctuation.definition.string.end.pyra"
+              "name": "punctuation.definition.string.end.zenvik"
             }
           },
           "patterns": [
             {
-              "name": "constant.character.escape.pyra",
+              "name": "constant.character.escape.zenvik",
               "match": "\\\\."
             }
           ]
         },
         {
-          "name": "string.quoted.single.pyra",
+          "name": "string.quoted.single.zenvik",
           "begin": "'",
           "end": "'",
           "beginCaptures": {
             "0": {
-              "name": "punctuation.definition.string.begin.pyra"
+              "name": "punctuation.definition.string.begin.zenvik"
             }
           },
           "endCaptures": {
             "0": {
-              "name": "punctuation.definition.string.end.pyra"
+              "name": "punctuation.definition.string.end.zenvik"
             }
           },
           "patterns": [
             {
-              "name": "constant.character.escape.pyra",
+              "name": "constant.character.escape.zenvik",
               "match": "\\\\."
             }
           ]
         },
         {
-          "name": "constant.numeric.pyra",
+          "name": "constant.numeric.zenvik",
           "match": "\\b\\d+(?:\\.\\d+)?\\b"
         },
         {
-          "name": "constant.language.pyra",
+          "name": "constant.language.zenvik",
           "match": "\\b(?:True|False|None)\\b"
         },
         {
-          "name": "keyword.control.pyra",
+          "name": "keyword.control.zenvik",
           "match": "\\b(?:if|elif|else|while|for|in|def|return|break|continue|and|or|not)\\b"
         },
         {
-          "name": "keyword.operator.pyra",
+          "name": "keyword.operator.zenvik",
           "match": "(?:\\*\\*|==|!=|<=|>=|\\+=|-=|\\*=|/=|%=|[+*/%<>=-])"
         },
         {
-          "name": "punctuation.section.block.pyra",
+          "name": "punctuation.section.block.zenvik",
           "match": "[{}]"
         },
         {
-          "name": "punctuation.section.sequence.pyra",
+          "name": "punctuation.section.sequence.zenvik",
           "match": "[\\[\\](),:;]"
         },
         {
-          "name": "entity.name.function.call.pyra",
+          "name": "entity.name.function.call.zenvik",
           "match": "\\b[A-Za-z_][A-Za-z0-9_]*(?=\\s*\\()"
         },
         {
-          "name": "variable.pyra",
+          "name": "variable.zenvik",
           "match": "\\b[A-Za-z_][A-Za-z0-9_]*\\b"
         }
       ]

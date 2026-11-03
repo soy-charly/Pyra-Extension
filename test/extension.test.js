@@ -6,26 +6,29 @@ const test = require("node:test");
 
 const root = path.join(__dirname, "..");
 const manifest = JSON.parse(fs.readFileSync(path.join(root, "package.json"), "utf8"));
-const snippets = JSON.parse(fs.readFileSync(path.join(root, "snippets/pyra.json"), "utf8"));
+const snippets = JSON.parse(fs.readFileSync(path.join(root, "snippets/zenvik.json"), "utf8"));
 
-test("manifest registers the Pyra language, grammar, and commands", () => {
-  const pyraLanguage = manifest.contributes.languages.find((language) => language.id === "pyra");
-  assert.ok(pyraLanguage && pyraLanguage.extensions.includes(".pyra"));
-  assert.deepEqual(pyraLanguage.icon, {
-    light: "./icons/pyra.svg",
-    dark: "./icons/pyra.svg"
+test("manifest registers the Zenvik language, grammar, and commands", () => {
+  const zenvikLanguage = manifest.contributes.languages.find((language) => language.id === "zenvik");
+  assert.ok(zenvikLanguage && zenvikLanguage.extensions.includes(".zenvik"));
+  assert.deepEqual(zenvikLanguage.icon, {
+    light: "./icons/Zenvik-Logo.svg",
+    dark: "./icons/Zenvik-Logo.svg"
   });
-  assert.ok(fs.existsSync(path.join(root, "icons/pyra.svg")));
+  assert.equal(manifest.name, "zenvik-language");
+  assert.equal(manifest.icon, "Zenvik-Logo.png");
+  assert.ok(fs.existsSync(path.join(root, "icons/Zenvik-Logo.svg")));
+  assert.ok(fs.existsSync(path.join(root, "Zenvik-Logo.png")));
   assert.ok(!manifest.contributes.iconThemes, "the extension should not replace the user's icon theme");
   assert.ok(manifest.contributes.grammars.some(
-    (grammar) => grammar.language === "pyra" && grammar.path === "./syntaxes/pyra.tmLanguage.json"
+    (grammar) => grammar.language === "zenvik" && grammar.path === "./syntaxes/zenvik.tmLanguage.json"
   ));
   assert.deepEqual(
     manifest.contributes.commands.map((command) => command.command),
-    ["pyra.compileFile", "pyra.runExecutable", "pyra.checkFile"]
+    ["zenvik.compileFile", "zenvik.runExecutable", "zenvik.checkFile"]
   );
   assert.ok(manifest.contributes.snippets.some(
-    (snippet) => snippet.language === "pyra" && snippet.path === "./snippets/pyra.json"
+    (snippet) => snippet.language === "zenvik" && snippet.path === "./snippets/zenvik.json"
   ));
 });
 
@@ -93,14 +96,14 @@ test("extension activation registers commands and language providers", () => {
 
   extension.activate({ subscriptions: [] });
   assert.deepEqual(registered.map(([command]) => command), [
-    "pyra.compileFile",
-    "pyra.runExecutable",
-    "pyra.checkFile"
+    "zenvik.compileFile",
+    "zenvik.runExecutable",
+    "zenvik.checkFile"
   ]);
   assert.deepEqual(providers.map(([kind, language]) => [kind, language]), [
-    ["completion", "pyra"],
-    ["hover", "pyra"],
-    ["signature", "pyra"]
+    ["completion", "zenvik"],
+    ["hover", "zenvik"],
+    ["signature", "zenvik"]
   ]);
   extension.deactivate();
 });
@@ -125,7 +128,7 @@ test("language providers complete built-ins and current-file functions", () => {
   registerLanguageFeatures(vscode, { subscriptions: [] });
   const document = textDocument("def greet(name) {\n    result = name\n    print(result)\n}\n");
   const items = providers.completion.provideCompletionItems(document);
-  assert.ok(items.some((item) => item.label === "range" && item.detail === "Pyra built-in"));
+  assert.ok(items.some((item) => item.label === "range" && item.detail === "Zenvik built-in"));
   const custom = items.find((item) => item.label === "greet");
   assert.ok(custom);
   assert.equal(custom.insertText, "greet($0)");

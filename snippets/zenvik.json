@@ -6,7 +6,7 @@
       "\t$0",
       "}"
     ],
-    "description": "Define a top-level Pyra function"
+    "description": "Define a top-level Zenvik function"
   },
   "If / else": {
     "prefix": "if",
@@ -39,7 +39,7 @@
       "\t$0",
       "}"
     ],
-    "description": "Iterate over a Pyra value"
+    "description": "Iterate over a Zenvik value"
   },
   "For range loop": {
     "prefix": "forr",

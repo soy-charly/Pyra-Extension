@@ -1,7 +1,7 @@
 {
-  "name": "pyra-language",
-  "displayName": "Pyra Language",
-  "description": "Syntax highlighting and compiler commands for the Pyra language.",
+  "name": "zenvik-language",
+  "displayName": "Zenvik Language",
+  "description": "Syntax highlighting and compiler commands for the Zenvik language.",
   "version": "0.1.0",
   "publisher": "pyra-language",
   "license": "MIT",
@@ -9,12 +9,12 @@
     "type": "git",
     "url": "https://github.com/soy-charly/Pyra-Extension.git"
   },
-  "icon": "icon.png",
+  "icon": "Zenvik-Logo.png",
   "files": [
     "extension.js",
     "language-features.js",
     "language-configuration.json",
-    "icon.png",
+    "Zenvik-Logo.png",
     "icons/**",
     "LICENCE",
     "README.md",
@@ -31,61 +31,61 @@
     "Programming Languages"
   ],
   "activationEvents": [
-    "onLanguage:pyra"
+    "onLanguage:zenvik"
   ],
   "main": "./extension.js",
   "contributes": {
     "languages": [
       {
-        "id": "pyra",
+        "id": "zenvik",
         "aliases": [
-          "Pyra",
-          "pyra"
+          "Zenvik",
+          "zenvik"
         ],
         "extensions": [
-          ".pyra"
+          ".zenvik"
         ],
         "icon": {
-          "light": "./icons/pyra.svg",
-          "dark": "./icons/pyra.svg"
+          "light": "./icons/Zenvik-Logo.svg",
+          "dark": "./icons/Zenvik-Logo.svg"
         },
         "configuration": "./language-configuration.json"
       }
     ],
     "grammars": [
       {
-        "language": "pyra",
-        "scopeName": "source.pyra",
-        "path": "./syntaxes/pyra.tmLanguage.json"
+        "language": "zenvik",
+        "scopeName": "source.zenvik",
+        "path": "./syntaxes/zenvik.tmLanguage.json"
       }
     ],
     "snippets": [
       {
-        "language": "pyra",
-        "path": "./snippets/pyra.json"
+        "language": "zenvik",
+        "path": "./snippets/zenvik.json"
       }
     ],
     "commands": [
       {
-        "command": "pyra.compileFile",
-        "title": "Pyra: Compile File"
+        "command": "zenvik.compileFile",
+        "title": "Zenvik: Compile File"
       },
       {
-        "command": "pyra.runExecutable",
-        "title": "Pyra: Run Executable"
+        "command": "zenvik.runExecutable",
+        "title": "Zenvik: Run Executable"
       },
       {
-        "command": "pyra.checkFile",
-        "title": "Pyra: Check File"
+        "command": "zenvik.checkFile",
+        "title": "Zenvik: Check File"
       }
     ],
     "configuration": {
-      "title": "Pyra",
+      "title": "Zenvik",
       "properties": {
-        "pyraLanguage.compilerPath": {
+        "zenvikLanguage.compilerPath": {
           "type": "string",
-          "default": "pyra",
-          "description": "Path to the Pyra compiler executable."
+          "default": "zenvik",
+          "description": "Path to the Zenvik compiler executable."
         }
       }
     }

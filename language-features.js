@@ -92,7 +92,7 @@ function signatureText(name, parameters) {
 function functionDocumentation(name, parameters, userFunction) {
   const signature = signatureText(name, parameters);
   return userFunction
-    ? `\`${signature}\`\n\nUser-defined Pyra function (line ${userFunction.line}).`
+    ? `\`${signature}\`\n\nUser-defined Zenvik function (line ${userFunction.line}).`
     : `\`${signature}\`\n\n${BUILTINS[name].summary}`;
 }
 
@@ -108,13 +108,13 @@ function completionProvider(vscode) {
       const items = [];
       for (const [name, detail] of Object.entries(BUILTINS)) {
         const item = new vscode.CompletionItem(name, vscode.CompletionItemKind.Function);
-        item.detail = "Pyra built-in";
+        item.detail = "Zenvik built-in";
         item.documentation = `${signatureText(name, detail.signatures[0])}\n\n${detail.summary}`;
         items.push(item);
       }
       for (const [name, detail] of Object.entries(KEYWORDS)) {
         const item = new vscode.CompletionItem(name, vscode.CompletionItemKind.Keyword);
-        item.detail = "Pyra keyword";
+        item.detail = "Zenvik keyword";
         item.documentation = detail;
         items.push(item);
       }
@@ -249,10 +249,10 @@ function signatureProvider(vscode) {
 
 function registerLanguageFeatures(vscode, context) {
   context.subscriptions.push(
-    vscode.languages.registerCompletionItemProvider("pyra", completionProvider(vscode)),
-    vscode.languages.registerHoverProvider("pyra", hoverProvider(vscode)),
+    vscode.languages.registerCompletionItemProvider("zenvik", completionProvider(vscode)),
+    vscode.languages.registerHoverProvider("zenvik", hoverProvider(vscode)),
     vscode.languages.registerSignatureHelpProvider(
-      "pyra",
+      "zenvik",
       signatureProvider(vscode),
       "(",
       ","
