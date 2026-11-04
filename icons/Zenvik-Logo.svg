@@ -23,9 +23,4 @@
     <path d="M492 370h-28c-13 0-21 9-21 23v34c0 18-10 29-28 34 18 5 28 16 28 34v34c0 14 8 23 21 23h28"/>
     <path d="M615 370h28c13 0 21 9 21 23v34c0 18 10 29 28 34-18 5-28 16-28 34v34c0 14-8 23-21 23h-28"/>
   </g>
-
-  <!-- Nombre; texto editable y vectorizable en cualquier editor SVG -->
-  <text x="512" y="950" text-anchor="middle" fill="#f8fafc"
-        font-family="Inter, Montserrat, Arial, sans-serif" font-size="154"
-        font-weight="650" letter-spacing="-8">Zenvik</text>
 </svg>
